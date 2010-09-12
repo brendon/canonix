@@ -1,0 +1,23 @@
+<samlp:ArtifactResponse xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" xmlns="urn:oasis:names:tc:SAML:2.0:assertion" ID="122401A9D1742640618954CDD50CEC459150836A" IssueInstant="2010-09-10T00:00:50-05:00" Version="2.0"><samlp:Status><samlp:StatusCode ID="A6B45394506685EAD93131AD335775015C49B52C" Value="urn:oasis:names:tc:SAML:2.0:status:Failure"></samlp:StatusCode></samlp:Status><samlp:Assertion ID="11B542652811C7A1AC8B8265D92AB293CCA66B26" IssueInstant="2010-09-10T00:00:50-05:00"><Issuer>example.net</Issuer><Subject><NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"></NameID><SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer"></SubjectConfirmation></Subject><Conditions NotBefore="2010-09-10T00:00:50-05:00" NotOnOrAfter="2010-09-10T12:00:50-05:00"></Conditions><AuthnStatement AuthnInstant="2010-09-10T00:00:50-05:00"><AuthnContext><AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PreviousSession</AuthnContextClassRef></AuthnContext></AuthnStatement><AttributeStatement><Attribute Name="urn:example:profiles"><AttributeValue FriendlyName="type" type="example:profile:attribute">Person</AttributeValue><AttributeValue FriendlyName="SessionID" type="example:profile:attribute">02b5e2df689b97067dc51a0cd2029510</AttributeValue><AttributeValue FriendlyName="Role" type="example:profile:role">Public</AttributeValue></Attribute></AttributeStatement></samlp:Assertion><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:CanonicalizationMethod><ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></ds:SignatureMethod><ds:Reference URI="122401A9D1742640618954CDD50CEC459150836A"><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform><ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"><InclusiveNamespaces PrefixList="#default saml ds xs xsi"></InclusiveNamespaces></ds:Transform></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>dQskOs0c6N7GbFJ13SbozqhEQTM=
+</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>d2rgUtclTSl7q68kZTkaFo8/rBZk/NEmkeKT7qM5doiVhHF4FrMuv7NdQVbQ
+Vi//wyYk6i9u8s13tsYnliSo+4xGbWl112LrAp8U2E8pLjMxqLYQHXw6qV3h
+TLhKw/k8sYS54nOye9t7M0VxHl+sKfX+YZFr8EI3ST2/BKFqm5c=
+</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509Certificate>MIIDFTCCAn4CAQAwDQYJKoZIhvcNAQEEBQAwgdIxCzAJBgNVBAYTAlVTMRIw
+EAYDVQQIEwlNaW5uZXNvdGExEjAQBgNVBAcTCVJvY2hlc3RlcjElMCMGA1UE
+ChMcQ29ycG9yYXRlIFdlYiBTZXJ2aWNlcywgSW5jLjFAMD4GA1UECxM3TWF5
+byBNZWRpY2FsIExhYm9yYXRvcmllcyBQcm9maWxlIE1hbmFnZXIgSG9zdGVk
+IGJ5IENXUzEVMBMGA1UEAxMMbWF5by5jd3MubmV0MRswGQYJKoZIhvcNAQkB
+FgxseWxlQGN3cy5uZXQwHhcNMDcwODAxMTg1ODUzWhcNMzIwNzI1MTg1ODUz
+WjCB0jELMAkGA1UEBhMCVVMxEjAQBgNVBAgTCU1pbm5lc290YTESMBAGA1UE
+BxMJUm9jaGVzdGVyMSUwIwYDVQQKExxDb3Jwb3JhdGUgV2ViIFNlcnZpY2Vz
+LCBJbmMuMUAwPgYDVQQLEzdNYXlvIE1lZGljYWwgTGFib3JhdG9yaWVzIFBy
+b2ZpbGUgTWFuYWdlciBIb3N0ZWQgYnkgQ1dTMRUwEwYDVQQDEwxtYXlvLmN3
+cy5uZXQxGzAZBgkqhkiG9w0BCQEWDGx5bGVAY3dzLm5ldDCBnzANBgkqhkiG
+9w0BAQEFAAOBjQAwgYkCgYEA2+1yxxQTeBR+/ducTSVj7eR8krq/OI2LnYxh
+un18kVplOiDwUauqxZZL+ItZhC19/48k3f9YyGsRS1r2YNgOvWKXT8/GEMyI
+/Wk44l/7aUbNeVvdtXBdGdexy972RYH9jOkp4LRWQoJ4l6y1Bt7XesU8p/8Q
+Yd1V/LqUNHQmcq0CAwEAATANBgkqhkiG9w0BAQQFAAOBgQAdSKl3LDTh6Z/p
+P31zMKHOx5VEHnyUmzfd5vl0tfB8a6uMv3NKe2knwHjx7vwwGboVsCS7X6Uu
+x+scXbkA8Rod34PyMQAKqzN8ePTlWywPrtbFJzRROj/7Du2uz83osacuW0bv
+0AoM/vII4Xbyc/f1OTZvI1ygIVlnbmGI+xJATQ==
+</ds:X509Certificate></ds:X509Data></ds:KeyInfo></ds:Signature></samlp:ArtifactResponse>

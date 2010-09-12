@@ -258,12 +258,9 @@ module XML
         
         def write_attribute_axis(node)
           list = Array.new()
-					#Sorting-Bug
-          #node.attributes().each_attribute{|attr|
-          #  list.push(attr) if (!is_namespace_node(attr.value()) && !is_namespace_decl(attr)) # && is_node_visible(
-          #}
-					node.attributes().sort().each{|key,attr|
-            list.push(attr) if (!is_namespace_node(attr.value()) && !is_namespace_decl(attr)) # && is_node_visible(
+          node.attributes.keys.sort.each{|key|
+            attr = node.attributes.get_attribute(key)
+            list.push(attr) if (!is_namespace_node(attr.value()) && !is_namespace_decl(attr))
           }
           if (!@exclusive && node.parent() != nil && node.parent().parent() != nil)
             cur = node.parent()
