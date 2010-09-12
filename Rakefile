@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "xmlcanonicalizer"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{XML Canonicalizer for Ruby >= 1.92}
+    gem.description = %Q{This is taken from XMLCanonicalizer/WSS4R and http://github.com/borisnadion/xml-canonicalizer}
     gem.email = "andrewferk@gmail.com"
     gem.homepage = "http://github.com/andrewferk/xmlcanonicalizer"
     gem.authors = ["Andrew Ferk"]

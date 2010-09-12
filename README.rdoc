@@ -1,6 +1,8 @@
 = xmlcanonicalizer
 
-Description goes here.
+XML Canonicalizer for Ruby >= 1.92
+
+This is taken from XMLCanonicalizer/WSS4R and http://github.com/borisnadion/xml-canonicalizer
 
 == Note on Patches/Pull Requests
  
