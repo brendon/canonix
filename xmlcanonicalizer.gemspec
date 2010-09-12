@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{xmlcanonicalizer}
-  s.version = "0.0.1"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andrew Ferk"]
@@ -25,6 +25,8 @@ Gem::Specification.new do |s|
      "VERSION",
      "lib/xml/util/xmlcanonicalizer.rb",
      "lib/xmlcanonicalizer.rb",
+     "test/complex.xml",
+     "test/expected.xml",
      "test/helper.rb",
      "test/test_xmlcanonicalizer.rb",
      "xmlcanonicalizer.gemspec"
