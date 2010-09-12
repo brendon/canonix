@@ -5,9 +5,9 @@
 
 Gem::Specification.new do |s|
   s.name = %q{xmlcanonicalizer}
-  s.version = "0.0.0.pre1"
+  s.version = "0.0.1"
 
-  s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
+  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andrew Ferk"]
   s.date = %q{2010-09-12}
   s.description = %q{This is taken from XMLCanonicalizer/WSS4R and http://github.com/borisnadion/xml-canonicalizer}
@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "lib/xml/util/xmlcanonicalizer.rb",
      "lib/xmlcanonicalizer.rb",
      "test/helper.rb",
      "test/test_xmlcanonicalizer.rb",
