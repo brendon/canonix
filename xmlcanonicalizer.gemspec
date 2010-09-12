@@ -25,7 +25,8 @@ Gem::Specification.new do |s|
      "VERSION",
      "lib/xmlcanonicalizer.rb",
      "test/helper.rb",
-     "test/test_xmlcanonicalizer.rb"
+     "test/test_xmlcanonicalizer.rb",
+     "xmlcanonicalizer.gemspec"
   ]
   s.homepage = %q{http://github.com/andrewferk/xmlcanonicalizer}
   s.rdoc_options = ["--charset=UTF-8"]
