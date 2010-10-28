@@ -32,4 +32,27 @@ class TestXmlcanonicalizer < Test::Unit::TestCase
     
     assert_equal xml_expect, xml_canonicalized
   end
+
+  should "canonicalize a saml xml file correctly" do
+    fp = File.new(File.dirname(File.expand_path(__FILE__))+'/saml_assertion.xml','r')
+    xml = ''
+    while (l = fp.gets)
+      xml += l
+    end
+    fp.close
+    
+    xml_canonicalizer = XML::Util::XmlCanonicalizer.new(false,true)
+    rexml = REXML::Document.new(xml);
+    xml_canonicalized = xml_canonicalizer.canonicalize(rexml);
+    
+    fp = File.new(File.dirname(File.expand_path(__FILE__))+'/saml_expected_canonical_form.xml','r')
+    xml_expect = ''
+    while (l = fp.gets)
+      xml_expect += l
+    end
+    fp.close
+    
+    assert_equal xml_expect, xml_canonicalized
+  end
+
 end

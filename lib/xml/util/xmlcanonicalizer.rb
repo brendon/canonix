@@ -110,7 +110,6 @@ module XML
           @visibleNamespaces = Array.new()
 			 @inclusive_namespaces = Array.new()
           @prefix_list = nil
-			 @rendered_prefixes = Array.new()
         end
         
         def add_inclusive_namespaces(prefix_list, element, visible_namespaces)
@@ -243,8 +242,6 @@ module XML
           list.sort!()
           list.each{|prefix|
             next if (prefix == "")
-				next if (@rendered_prefixes.include?(prefix))
-				@rendered_prefixes.push(prefix)
             ns = node.namespace(prefix)
             ns = @preserve_element.namespace(prefix) if (ns == nil)
             @res = @res + normalize_string(" " + prefix + '="' + ns + '"', NODE_TYPE_TEXT) if (prefix == "xmlns")

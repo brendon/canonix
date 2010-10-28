@@ -1,0 +1,10 @@
+<saml:Assertion ID='s272db1ff577ed4463edc408a3d7f3571aebf1696a' IssueInstant='2010-10-28T13:35:36Z' Version='2.0' xmlns:saml='urn:oasis:names:tc:SAML:2.0:assertion'>
+<saml:Issuer>http://dev.example.com:8080/opensso</saml:Issuer><saml:Subject>
+<saml:NameID Format='urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress' NameQualifier='http://dev.example.com:8080/opensso'>person@example.com</saml:NameID><saml:SubjectConfirmation Method='urn:oasis:names:tc:SAML:2.0:cm:bearer'>
+<saml:SubjectConfirmationData InResponseTo='294e5540-c4c6-012d-1a98-0017f2dcb387' NotOnOrAfter='2010-10-28T13:45:36Z' Recipient='http://localhost:3000/auth/authenticate'/></saml:SubjectConfirmation>
+</saml:Subject><saml:Conditions NotBefore='2010-10-28T13:25:36Z' NotOnOrAfter='2010-10-28T13:45:36Z'>
+<saml:AudienceRestriction>
+<saml:Audience>saml-example</saml:Audience>
+</saml:AudienceRestriction>
+</saml:Conditions>
+<saml:AuthnStatement AuthnInstant='2010-10-28T13:35:36Z' SessionIndex='s2eddbcf944c22056cec33d0ea24a54217a164f601'><saml:AuthnContext><saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport</saml:AuthnContextClassRef></saml:AuthnContext></saml:AuthnStatement><saml:AttributeStatement><saml:Attribute Name='name'><saml:AttributeValue xsi:type='xs:string' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>happy</saml:AttributeValue></saml:Attribute><saml:Attribute Name='uuid'><saml:AttributeValue xsi:type='xs:string' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>3c678d50-c357-012d-1a87-0017f2dcb387</saml:AttributeValue></saml:Attribute></saml:AttributeStatement></saml:Assertion>
