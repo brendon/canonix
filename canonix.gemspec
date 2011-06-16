@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "canonix.gemspec",
     "lib/xml/util/xmlcanonicalizer.rb",
     "lib/xmlcanonicalizer.rb",
     "test/complex.xml",
@@ -32,8 +33,7 @@ Gem::Specification.new do |s|
     "test/saml_assertion.xml",
     "test/saml_expected_canonical_form.xml",
     "test/test_xmlcanonicalizer.rb",
-    "tests.watchr",
-    "xmlcanonicalizer.gemspec"
+    "tests.watchr"
   ]
   s.homepage = %q{http://github.com/brendon/canonix}
   s.require_paths = [%q{lib}]
