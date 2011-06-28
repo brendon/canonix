@@ -86,7 +86,7 @@ module XML
       end
       
       class XmlCanonicalizer
-        attr_accessor :prefix_list, :logger
+        attr_accessor :prefix_list, :logger, :inclusive_namespaces
         
         BEFORE_DOC_ELEMENT = 0
         INSIDE_DOC_ELEMENT = 1
@@ -228,17 +228,14 @@ module XML
           if (visible && !has_empty_namespace && !is_namespace_rendered(nil, nil)) 
             @res = @res + ' xmlns=""'
           end
-          #TODO: ns of inclusive_list
-#=begin
-          if ((@prefix_list) && (node.to_s() == node.parent().to_s()))
-            #list.push(node.prefix())
-            @inclusive_namespaces.each{|ns|
-              prefix = ns.prefix().split(":")[1]
-              list.push(prefix) if (!list.include?(prefix) && (!node.attributes.prefixes.include?(prefix))) 
+          
+          #: ns of inclusive_list
+          if !self.inclusive_namespaces.empty?
+            self.inclusive_namespaces.each{|prefix|
+              list.push(prefix) if (!list.include?(prefix) && (node.attributes.prefixes.include?(prefix))) 
             }
-				@prefix_list = nil
           end
-#=end
+          
           list.sort!()
           list.each{|prefix|
             next if (prefix == "")

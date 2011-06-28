@@ -1,0 +1,39 @@
+<samlp:Response xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" Destination="http://dev.example.com:8080/sessions/saml" ID="_400c66cfbb96b81e87d6bc96fefdb9b01308849650183" InResponseTo="_107c07d0-7feb-012e-8cc0-001ec2c1cafd" IssueInstant="2011-06-23T17:20:50.183Z" Version="2.0">
+  <saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity">http://dev.example.com:8080/sessions/saml</saml:Issuer>
+  <samlp:Status>
+    <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"></samlp:StatusCode>
+  </samlp:Status>
+  <saml:Assertion xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" ID="_b197baba4544550444357b2b18de57961308849650183" IssueInstant="2011-06-23T17:20:50.183Z" Version="2.0">
+    <saml:Issuer Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity">http://dev.example.com:8080/sessions/saml</saml:Issuer>
+    <saml:Subject>
+      <saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified">mail@example.com</saml:NameID>
+      <saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
+        <saml:SubjectConfirmationData InResponseTo="_107c07d0-7feb-012e-8cc0-001ec2c1cafd" NotOnOrAfter="2011-06-23T17:25:50.183Z" Recipient="http://bmls.screenstepslive.dev/sessions/saml"></saml:SubjectConfirmationData>
+      </saml:SubjectConfirmation>
+    </saml:Subject>
+    <saml:Conditions NotBefore="2011-06-23T17:20:50.183Z" NotOnOrAfter="2011-06-23T17:25:50.183Z">
+      <saml:AudienceRestriction>
+        <saml:Audience>Audience</saml:Audience>
+      </saml:AudienceRestriction>
+    </saml:Conditions>
+    <saml:AuthnStatement AuthnInstant="2011-06-23T17:20:50.183Z">
+      <saml:AuthnContext>
+        <saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:unspecified</saml:AuthnContextClassRef>
+      </saml:AuthnContext>
+    </saml:AuthnStatement>
+    <saml:AttributeStatement>
+      <saml:Attribute Name="userId" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified">
+        <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:anyType">00550000001b7Kf</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute Name="username" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified">
+        <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:anyType">mail@example.com</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute Name="email" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified">
+        <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:anyType">mail@example.com</saml:AttributeValue>
+      </saml:Attribute>
+      <saml:Attribute Name="is_portal_user" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified">
+        <saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:anyType">false</saml:AttributeValue>
+      </saml:Attribute>
+    </saml:AttributeStatement>
+  </saml:Assertion>
+</samlp:Response>
