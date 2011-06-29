@@ -55,7 +55,7 @@ class TestXmlcanonicalizer < Test::Unit::TestCase
     assert_equal xml_expect, xml_canonicalized
   end
   
-  should "canonicalize a saml file from salesforce" do
+  should "canonicalize a saml file with inclusive namespaces" do
     fp = File.new(File.dirname(File.expand_path(__FILE__))+'/saml_with_inclusive_ns_assertion.xml','r')
     xml = ''
     while (l = fp.gets)

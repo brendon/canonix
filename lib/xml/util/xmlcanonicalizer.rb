@@ -108,7 +108,7 @@ module XML
           @prevVisibleNamespacesStart = 0
           @prevVisibleNamespacesEnd = 0
           @visibleNamespaces = Array.new()
-			 @inclusive_namespaces = Array.new()
+			    @inclusive_namespaces = Array.new()
           @prefix_list = nil
         end
         
