@@ -32,7 +32,7 @@ class TestXmlcanonicalizer < Test::Unit::TestCase
     
     assert_equal xml_expect, xml_canonicalized
   end
-
+  
   should "canonicalize a saml xml file correctly" do
     fp = File.new(File.dirname(File.expand_path(__FILE__))+'/saml_assertion.xml','r')
     xml = ''
