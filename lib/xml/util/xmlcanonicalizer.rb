@@ -108,8 +108,6 @@ module XML
           @prevVisibleNamespacesStart = 0
           @prevVisibleNamespacesEnd = 0
           @visibleNamespaces = Array.new()
-			    @inclusive_namespaces = Array.new()
-          @prefix_list = nil
         end
         
         def add_inclusive_namespaces(prefix_list, element, visible_namespaces)
@@ -127,22 +125,6 @@ module XML
         end
         
         def canonicalize(document)
-          write_document_node(document)
-          @res
-        end
-        
-        def canonicalize_element(element, logging = true)
-          @inclusive_namespaces = add_inclusive_namespaces(@prefix_list, element, @inclusive_namespaces) if (@prefix_list)
-          @preserve_document = element.document()
-          tmp_parent = element.parent()
-          body_string = remove_whitespace(element.to_s().gsub("\n","").gsub("\t","").gsub("\r",""))
-          document = Document.new(body_string)
-          tmp_parent.delete_element(element)
-          element = tmp_parent.add_element(document.root())
-          @preserve_element = element
-          document = Document.new(element.to_s())
-          ns = element.namespace(element.prefix())
-          document.root().add_namespace(element.prefix(), ns)
           write_document_node(document)
           @res
         end
@@ -230,7 +212,7 @@ module XML
           end
           
           #: ns of inclusive_list
-          if !self.inclusive_namespaces.empty?
+          if self.inclusive_namespaces && !self.inclusive_namespaces.empty?
             self.inclusive_namespaces.each{|prefix|
               list.push(prefix) if (!list.include?(prefix) && (node.attributes.prefixes.include?(prefix))) 
             }
@@ -399,23 +381,8 @@ if __FILE__ == $0
   document = Document.new(File.new(ARGV[0]))
   body = nil
   c = WSS4R::Security::Util::XmlCanonicalizer.new(false, true)
-  
-  if (ARGV.size() == 3) 
-    body = ARGV[2]
-    if (body == "true")
-      element = XPath.match(document, "/soap:Envelope/soap:Body")[0]
-      element = XPath.first(document, "/soap:Envelope/soap:Header/wsse:Security/Signature/SignedInfo")
-      result = c.canonicalize_element(element)
-      puts("-----")
-      puts(result)
-      puts("-----")
-      puts(result.size())			
-      puts("-----")
-      puts(CryptHash.new().digest_b64(result))
-    end
-  else 
-    result = c.canonicalize(document)
-  end
+    
+  result = c.canonicalize(document)
   
   file = File.new(ARGV[1], "wb")
   file.write(result)
