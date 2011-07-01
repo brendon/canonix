@@ -23,6 +23,17 @@ class TestXmlCanonicalizer < Test::Unit::TestCase
     assert_equal xml_expect, xml_canonicalized
   end
   
+  should "canonicalize an xml element correctly" do
+    xml_canonicalizer = XML::Util::XmlCanonicalizer.new(true,true)
+    
+    rexml = rexml_fixture("complex.xml")
+    element = REXML::XPath.first(rexml, "//AttributeValue[@FriendlyName='type']")
+    element_canonicalized = xml_canonicalizer.canonicalize(element)
+    
+    element_expected = '<AttributeValue FriendlyName="type" type="example:profile:attribute">Person</AttributeValue>'
+    assert_equal element_expected, element_canonicalized
+  end
+  
   should "canonicalize a saml xml file correctly" do
     xml_canonicalizer = XML::Util::XmlCanonicalizer.new(false,true)
     
