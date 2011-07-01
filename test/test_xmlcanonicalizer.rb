@@ -4,10 +4,10 @@ class TestXmlcanonicalizer < Test::Unit::TestCase
   
   should "canonicalize a simple xml file" do
     xml_canonicalizer = XML::Util::XmlCanonicalizer.new(true,true)
-    xml = "<foo bar='test'/>";
-    rexml = REXML::Document.new(xml);
-    xml_canonicalized = xml_canonicalizer.canonicalize(rexml);
-    xml_expect = "<foo bar=\"test\"></foo>";
+    xml = "<foo bar='test'/>"
+    rexml = REXML::Document.new(xml)
+    xml_canonicalized = xml_canonicalizer.canonicalize(rexml)
+    xml_expect = "<foo bar=\"test\"></foo>"
     assert_equal xml_expect, xml_canonicalized
   end
   
@@ -20,8 +20,8 @@ class TestXmlcanonicalizer < Test::Unit::TestCase
     fp.close
     
     xml_canonicalizer = XML::Util::XmlCanonicalizer.new(true,true)
-    rexml = REXML::Document.new(xml);
-    xml_canonicalized = xml_canonicalizer.canonicalize(rexml);
+    rexml = REXML::Document.new(xml)
+    xml_canonicalized = xml_canonicalizer.canonicalize(rexml)
     
     fp = File.new(File.dirname(File.expand_path(__FILE__))+'/expected.xml','r')
     xml_expect = ''
@@ -42,8 +42,8 @@ class TestXmlcanonicalizer < Test::Unit::TestCase
     fp.close
     
     xml_canonicalizer = XML::Util::XmlCanonicalizer.new(false,true)
-    rexml = REXML::Document.new(xml);
-    xml_canonicalized = xml_canonicalizer.canonicalize(rexml);
+    rexml = REXML::Document.new(xml)
+    xml_canonicalized = xml_canonicalizer.canonicalize(rexml)
     
     fp = File.new(File.dirname(File.expand_path(__FILE__))+'/saml_expected_canonical_form.xml','r')
     xml_expect = ''
@@ -66,7 +66,7 @@ class TestXmlcanonicalizer < Test::Unit::TestCase
     xml_canonicalizer = XML::Util::XmlCanonicalizer.new(false,true)
     rexml = REXML::Document.new(xml);
     xml_canonicalizer.inclusive_namespaces = %w(ds saml samlp xs)
-    xml_canonicalized = xml_canonicalizer.canonicalize(rexml);
+    xml_canonicalized = xml_canonicalizer.canonicalize(rexml)
     
     fp = File.new(File.dirname(File.expand_path(__FILE__))+'/saml_with_inclusive_ns_expected_canonical_form.xml','r')
     xml_expect = ''
