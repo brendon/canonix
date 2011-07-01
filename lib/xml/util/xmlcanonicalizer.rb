@@ -102,7 +102,6 @@ module XML
         def initialize(with_comments, excl_c14n)
           @with_comments = with_comments
           @exclusive = excl_c14n
-          @res = ""
           @state = BEFORE_DOC_ELEMENT
           @xnl = Array.new()
           @prevVisibleNamespacesStart = 0
@@ -126,7 +125,6 @@ module XML
         
         def canonicalize(document)
           write_document_node(document)
-          @res
         end
         
         def canonicalize_element(element, logging = true)
@@ -141,10 +139,10 @@ module XML
           ns = element.namespace(element.prefix())
           document.root().add_namespace(element.prefix(), ns)
           write_document_node(document)
-          @res
         end
         
         def write_document_node(document)
+          @res = ""
           @state = BEFORE_DOC_ELEMENT
           if (document.class().to_s() == "REXML::Element")
             write_node(document)

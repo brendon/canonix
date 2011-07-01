@@ -23,6 +23,19 @@ class TestXmlCanonicalizer < Test::Unit::TestCase
     assert_equal xml_expect, xml_canonicalized
   end
   
+  should "canonicalize multiple documents" do
+    xml_canonicalizer = XML::Util::XmlCanonicalizer.new(true,true)
+    
+    rexml_1 = rexml_fixture("complex.xml")
+    xml_canonicalizer.canonicalize(rexml_1)
+    
+    rexml_2 = rexml_fixture("complex.xml")
+    xml_canonicalized_2 = xml_canonicalizer.canonicalize(rexml_2)
+    
+    xml_expect = fixture("expected.xml")
+    assert_equal xml_expect, xml_canonicalized_2
+  end
+  
   should "canonicalize an xml element correctly" do
     xml_canonicalizer = XML::Util::XmlCanonicalizer.new(true,true)
     
@@ -32,6 +45,20 @@ class TestXmlCanonicalizer < Test::Unit::TestCase
     
     element_expected = '<AttributeValue FriendlyName="type" type="example:profile:attribute">Person</AttributeValue>'
     assert_equal element_expected, element_canonicalized
+  end
+  
+  should "canonicalize multiple xml elements correctly" do
+    xml_canonicalizer = XML::Util::XmlCanonicalizer.new(true,true)
+    
+    rexml = rexml_fixture("complex.xml")
+    
+    element_1 = REXML::XPath.first(rexml, "//AttributeValue[@FriendlyName='type']")
+    xml_canonicalizer.canonicalize(element_1)
+    
+    element_2 = REXML::XPath.first(rexml, "//AuthnStatement")
+    element_2_canonicalized = xml_canonicalizer.canonicalize(element_2)
+    element_2_expected = '<AuthnStatement AuthnInstant="2010-09-10T00:00:50-05:00"><AuthnContext><AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:PreviousSession</AuthnContextClassRef></AuthnContext></AuthnStatement>'
+    assert_equal element_2_expected, element_2_canonicalized
   end
   
   should "canonicalize a saml xml file correctly" do
