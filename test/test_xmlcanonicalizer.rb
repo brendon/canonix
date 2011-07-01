@@ -1,6 +1,6 @@
 require File.dirname(File.expand_path(__FILE__))+'/helper'
 
-class TestXmlcanonicalizer < Test::Unit::TestCase
+class TestXmlCanonicalizer < Test::Unit::TestCase
   
   should "canonicalize a simple xml file" do
     xml_canonicalizer = XML::Util::XmlCanonicalizer.new(true,true)
