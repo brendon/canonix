@@ -36,6 +36,16 @@ class TestXmlCanonicalizer < Test::Unit::TestCase
     assert_equal xml_expect, xml_canonicalized_2
   end
   
+  should "canonicalize the same document multiple times" do
+    xml_canonicalizer = XML::Util::XmlCanonicalizer.new(true,true)
+    
+    rexml = rexml_fixture("complex.xml")
+    xml_canonicalized_1 = xml_canonicalizer.canonicalize(rexml)
+    xml_canonicalized_2 = xml_canonicalizer.canonicalize(rexml)
+    
+    assert_equal xml_canonicalized_1, xml_canonicalized_2
+  end
+  
   should "canonicalize an xml element correctly" do
     xml_canonicalizer = XML::Util::XmlCanonicalizer.new(true,true)
     
@@ -45,6 +55,17 @@ class TestXmlCanonicalizer < Test::Unit::TestCase
     
     element_expected = '<AttributeValue FriendlyName="type" type="example:profile:attribute">Person</AttributeValue>'
     assert_equal element_expected, element_canonicalized
+  end
+  
+  should "canonicalize the same element multiple times" do
+    xml_canonicalizer = XML::Util::XmlCanonicalizer.new(true,true)
+    
+    rexml = rexml_fixture("complex.xml")
+    element = REXML::XPath.first(rexml, "//AttributeValue[@FriendlyName='type']")
+    element_canonicalized_1 = xml_canonicalizer.canonicalize(element)
+    element_canonicalized_2 = xml_canonicalizer.canonicalize(element)
+    
+    assert_equal element_canonicalized_1, element_canonicalized_2
   end
   
   should "canonicalize multiple xml elements correctly" do

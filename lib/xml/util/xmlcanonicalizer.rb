@@ -56,12 +56,6 @@ module XML
             return self.namespace(prefix)
           end
         end
-        def rendered=(rendered)
-          @rendered = rendered
-        end
-        def rendered?()
-          return @rendered
-        end
         def node_namespaces()
           ns = Array.new()
           ns.push(self.prefix())
@@ -170,8 +164,7 @@ module XML
             return
           end
           if (node.node_type() == :element)
-            write_element_node(node, visible) if (!node.rendered?())
-            node.rendered=(true)
+            write_element_node(node, visible)
           end
           if (node.node_type() == :processing_instruction)
           end
