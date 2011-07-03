@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{canonix}
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Brendon Muir"]
-  s.date = %q{2011-06-28}
+  s.date = %q{2011-07-03}
   s.description = %q{This is based on andrewferk's rewrite for Ruby 1.9 compatibility, but applies 
       relevance's fix to ensure proper canonicalisation. It is intended that this be the new official 
       Ruby Canonicaliser as the other project seems to be abandoned.}
@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
+    ".rvmrc",
     "LICENSE",
     "README.rdoc",
     "Rakefile",
