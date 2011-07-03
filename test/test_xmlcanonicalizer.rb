@@ -54,5 +54,27 @@ class TestXmlcanonicalizer < Test::Unit::TestCase
     
     assert_equal xml_expect, xml_canonicalized
   end
+  
+  should "canonicalize a saml file with inclusive namespaces" do
+    fp = File.new(File.dirname(File.expand_path(__FILE__))+'/saml_with_inclusive_ns_assertion.xml','r')
+    xml = ''
+    while (l = fp.gets)
+      xml += l
+    end
+    fp.close
+    
+    xml_canonicalizer = XML::Util::XmlCanonicalizer.new(false,true)
+    rexml = REXML::Document.new(xml);
+    xml_canonicalizer.inclusive_namespaces = %w(ds saml samlp xs)
+    xml_canonicalized = xml_canonicalizer.canonicalize(rexml);
+    
+    fp = File.new(File.dirname(File.expand_path(__FILE__))+'/saml_with_inclusive_ns_expected_canonical_form.xml','r')
+    xml_expect = ''
+    while (l = fp.gets)
+      xml_expect += l
+    end
+    fp.close
+    assert_equal xml_expect, xml_canonicalized #, (xml_canonicalized.to_s + "\n\n" + xml_expect)
+  end
 
 end
