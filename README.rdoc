@@ -1,8 +1,16 @@
-= xmlcanonicalizer
+= Canonix
 
 XML Canonicalizer for Ruby >= 1.92
 
-This is taken from XMLCanonicalizer/WSS4R and http://github.com/borisnadion/xml-canonicalizer
+This is taken from XMLCanonicalizer/WSS4R and http://github.com/borisnadion/xml-canonicalizer and https://github.com/andrewferk/xmlcanonicalizer.
+
+This gem is intended to replace andrewferk's xmlcanonicalizer which appears to have been abandoned.
+
+== History
+
+The main reason why this gem was created was to provide a working XML Canonicaliser for the ruby-saml project. The original gem had a bug in it that prevented it from correctly processing namespaced XML documents. A patch was provided by relevance and has been applied to canonix.
+
+I personally have little understanding of the inner workings of this code, and will happily accept pull requests to fix any issues that you may come across (with tests please). I am also not aware of which XML Canonicalisation algorithm is implemented by this gem, and a discussion on this matter can be found here: https://github.com/brendon/canonix/issues/2.
 
 == Note on Patches/Pull Requests
  
@@ -13,7 +21,3 @@ This is taken from XMLCanonicalizer/WSS4R and http://github.com/borisnadion/xml-
 * Commit, do not mess with rakefile, version, or history.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
-
-== Copyright
-
-Copyright (c) 2010 Andrew Ferk. See LICENSE for details.

@@ -8,7 +8,7 @@ begin
     gem.summary = %Q{XML Canonicalizer for Ruby >= 1.92}
     gem.description = %Q{This is based on andrewferk's rewrite for Ruby 1.9 compatibility, but applies 
       relevance's fix to ensure proper canonicalisation. It is intended that this be the new official 
-      Ruby Canonicaliser as the other project seems to be abandoned.}
+      Ruby XML Canonicaliser as the other project seems to be abandoned.}
     gem.email = "brendon@spike.net.nz"
     gem.homepage = "http://github.com/brendon/canonix"
     gem.authors = ["Brendon Muir"]
