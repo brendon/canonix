@@ -129,6 +129,21 @@ module XML
           @res
         end
         
+        def canonicalize_element(element, logging = true)
+          @preserve_document = element.document()
+          tmp_parent = element.parent()
+          body_string = remove_whitespace(element.to_s().gsub("\n","").gsub("\t","").gsub("\r",""))
+          document = Document.new(body_string)
+          tmp_parent.delete_element(element)
+          element = tmp_parent.add_element(document.root())
+          @preserve_element = element
+          document = Document.new(element.to_s())
+          ns = element.namespace(element.prefix())
+          document.root().add_namespace(element.prefix(), ns)
+          write_document_node(document)
+          @res
+        end
+        
         def write_document_node(document)
           @state = BEFORE_DOC_ELEMENT
           if (document.class().to_s() == "REXML::Element")
@@ -158,7 +173,7 @@ module XML
           end		
           if (node.node_type() == :element)
             write_element_node(node, visible) if (!node.rendered?())
-				node.rendered=(true)
+				    node.rendered=(true)
           end
           if (node.node_type() == :processing_instruction)
           end
@@ -177,8 +192,8 @@ module XML
           write_attribute_axis(node)
           @res = @res + ">" if (visible)
           node.each_child{|child|
-			 	write_node(child)
-			 }
+    			 	write_node(child)
+    			}
           @res = @res + "</" +node.expanded_name() + ">" if (visible)
           @state = AFTER_DOC_ELEMENT if (visible && state == BEFORE_DOC_ELEMENT)
           @prevVisibleNamespacesStart = savedPrevVisibleNamespacesStart
@@ -381,9 +396,24 @@ if __FILE__ == $0
   document = Document.new(File.new(ARGV[0]))
   body = nil
   c = WSS4R::Security::Util::XmlCanonicalizer.new(false, true)
-    
-  result = c.canonicalize(document)
   
+  if (ARGV.size() == 3) 
+    body = ARGV[2]
+    if (body == "true")
+      element = XPath.match(document, "/soap:Envelope/soap:Body")[0]
+      element = XPath.first(document, "/soap:Envelope/soap:Header/wsse:Security/Signature/SignedInfo")
+      result = c.canonicalize_element(element)
+      puts("-----")
+      puts(result)
+      puts("-----")
+      puts(result.size())            
+      puts("-----")
+      puts(CryptHash.new().digest_b64(result))
+    end
+  else 
+    result = c.canonicalize(document)
+  end
+    
   file = File.new(ARGV[1], "wb")
   file.write(result)
   file.close()
