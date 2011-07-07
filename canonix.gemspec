@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Brendon Muir"]
-  s.date = %q{2011-07-03}
+  s.authors = [%q{Brendon Muir}]
+  s.date = %q{2011-07-07}
   s.description = %q{This is based on andrewferk's rewrite for Ruby 1.9 compatibility, but applies 
       relevance's fix to ensure proper canonicalisation. It is intended that this be the new official 
       Ruby XML Canonicaliser as the other project seems to be abandoned.}
@@ -37,9 +37,9 @@ Gem::Specification.new do |s|
     "tests.watchr"
   ]
   s.homepage = %q{http://github.com/brendon/canonix}
-  s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.5.0}
-  s.summary = %q{XML Canonicalizer for Ruby >= 1.92}
+  s.require_paths = [%q{lib}]
+  s.rubygems_version = %q{1.8.5}
+  s.summary = %q{XML Canonicalizer for Ruby >= 1.9.2}
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
