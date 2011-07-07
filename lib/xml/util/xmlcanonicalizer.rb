@@ -13,64 +13,6 @@ module XML
   
   module Util
       
-      class REXML::Instruction
-        def write(writer, indent=-1, transitive=false, ie_hack=false)
-          indent(writer, indent)
-          writer << START.sub(/\\/u, '')
-          writer << @target
-          writer << ' '
-          writer << @content if @content != nil
-          writer << STOP.sub(/\\/u, '')
-        end
-      end
-      
-      class REXML::Attribute
-        def <=>(a2)
-          if (self === a2)
-            return 0
-          elsif (self == nil)
-            return -1
-          elsif (a2 == nil)
-            return 1
-          elsif (self.prefix() == a2.prefix())
-            return self.name()<=>a2.name()
-          end
-          if (self.prefix() == nil)
-            return -1
-          elsif (a2.prefix() == nil)
-            return 1
-          end
-          ret = self.namespace()<=>a2.namespace()
-          if (ret == 0)
-            ret = self.prefix()<=>a2.prefix()
-          end
-          return ret
-        end
-      end
-      
-      class REXML::Element
-        def search_namespace(prefix)
-          if (self.namespace(prefix) == nil)
-            return (self.parent().search_namespace(prefix)) if (self.parent() != nil)
-          else
-            return self.namespace(prefix)
-          end
-        end
-        def node_namespaces()
-          ns = Array.new()
-          ns.push(self.prefix())
-          self.attributes().each_attribute{|a|
-            if (a.prefix() != nil)
-              ns.push(a.prefix())
-            end
-            if (a.prefix() == "" && a.local_name() == "xmlns")
-              ns.push("xmlns")
-            end
-          }
-          ns
-        end
-      end
-      
       class NamespaceNode
         attr_reader :prefix, :uri
         def initialize(prefix, uri)
@@ -198,8 +140,7 @@ module XML
           list = Array.new()
           cur = node
           # while ((cur != nil) && (cur != doc) && (cur.node_type() != :document))
-          namespaces = cur.node_namespaces()
-          namespaces.each{|prefix|
+          node_namespaces(cur).each{|prefix|
             next if ((prefix == "xmlns") && (node.namespace(prefix) == ""))
             namespace = cur.namespace(prefix)
             next if (is_namespace_node(namespace))
@@ -236,6 +177,20 @@ module XML
             @prevVisibleNamespacesStart = @prevVisibleNamespacesEnd
             @prevVisibleNamespacesEnd = @visibleNamespaces.size()
           end
+        end
+        
+        def node_namespaces(node)
+          ns = Array.new()
+          ns.push(node.prefix())
+          node.attributes().each_attribute{|a|
+            if (a.prefix() != nil)
+              ns.push(a.prefix())
+            end
+            if (a.prefix() == "" && a.local_name() == "xmlns")
+              ns.push("xmlns")
+            end
+          }
+          ns
         end
         
         def write_attribute_axis(node)
