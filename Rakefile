@@ -5,7 +5,7 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "canonix"
-    gem.summary = %Q{XML Canonicalizer for Ruby >= 1.92}
+    gem.summary = %Q{XML Canonicalizer for Ruby >= 1.9.2}
     gem.description = %Q{This is based on andrewferk's rewrite for Ruby 1.9 compatibility, but applies 
       relevance's fix to ensure proper canonicalisation. It is intended that this be the new official 
       Ruby XML Canonicaliser as the other project seems to be abandoned.}
