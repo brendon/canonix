@@ -91,6 +91,16 @@ class TestXmlCanonicalizer < Test::Unit::TestCase
     xml_expect = fixture("saml_expected_canonical_form.xml")
     assert_equal xml_expect, xml_canonicalized
   end
+
+  should "canonicalize a saml xml file with default namespace correctly" do
+    xml_canonicalizer = XML::Util::XmlCanonicalizer.new(false,true)
+    
+    rexml = rexml_fixture("saml_with_default_namespace.xml")
+    xml_canonicalized = xml_canonicalizer.canonicalize(rexml)
+    
+    xml_expect = fixture("saml_with_default_namespace_expected_canonical_form.xml")
+    assert_equal xml_expect, xml_canonicalized
+  end
   
   should "canonicalize a saml file with inclusive namespaces" do
     xml_canonicalizer = XML::Util::XmlCanonicalizer.new(false,true)
