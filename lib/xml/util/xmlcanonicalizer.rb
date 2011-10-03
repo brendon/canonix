@@ -165,7 +165,11 @@ module XML
             }
           end
           
-          list.sort!()
+          if list.delete('xmlns')
+            list = ["xmlns"] + list.sort
+          else
+            list.sort!
+          end
           list.each{|prefix|
             next if (prefix == "")
             ns = node.namespace(prefix)
