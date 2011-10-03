@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{canonix}
-  s.version = "0.1.4"
+  s.version = "0.1.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Brendon Muir"]
-  s.date = %q{2011-07-12}
+  s.date = %q{2011-10-04}
   s.description = %q{This is based on andrewferk's rewrite for Ruby 1.9 compatibility, but applies 
       relevance's fix to ensure proper canonicalisation. It is intended that this be the new official 
       Ruby XML Canonicaliser as the other project seems to be abandoned.}
@@ -31,6 +31,8 @@ Gem::Specification.new do |s|
     "test/helper.rb",
     "test/saml_assertion.xml",
     "test/saml_expected_canonical_form.xml",
+    "test/saml_with_default_namespace.xml",
+    "test/saml_with_default_namespace_expected_canonical_form.xml",
     "test/saml_with_inclusive_ns_assertion.xml",
     "test/saml_with_inclusive_ns_expected_canonical_form.xml",
     "test/test_xmlcanonicalizer.rb",
