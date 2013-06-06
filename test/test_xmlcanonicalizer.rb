@@ -112,5 +112,4 @@ class TestXmlCanonicalizer < Test::Unit::TestCase
     xml_expect = fixture("saml_with_inclusive_ns_expected_canonical_form.xml")
     assert_equal xml_expect, xml_canonicalized #, (xml_canonicalized.to_s + "\n\n" + xml_expect)
   end
-
 end

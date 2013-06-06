@@ -295,7 +295,7 @@ module XML
 
         def write_text_node(node, visible)
           if (visible)
-            @res = @res + normalize_string(node.value(), node.node_type())
+            @res = @res + normalize_string(node.to_s, node.node_type())
           end
         end
 
