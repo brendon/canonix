@@ -54,5 +54,8 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
   end
-end
 
+  s.add_development_dependency 'rake'
+  s.add_development_dependency 'rdoc'
+  s.add_development_dependency 'jeweler'
+end
