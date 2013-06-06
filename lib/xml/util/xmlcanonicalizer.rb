@@ -10,9 +10,8 @@ require "base64"
 
 module XML
   include REXML
-  
+
   module Util
-      
       class NamespaceNode
         attr_reader :prefix, :uri
         def initialize(prefix, uri)
@@ -20,21 +19,20 @@ module XML
           @uri = uri
         end
       end
-      
+
       class XmlCanonicalizer
         attr_accessor :prefix_list, :logger, :inclusive_namespaces
-        
+
         BEFORE_DOC_ELEMENT = 0
         INSIDE_DOC_ELEMENT = 1
         AFTER_DOC_ELEMENT  = 2
-        
+
         NODE_TYPE_ATTRIBUTE  = 3
         NODE_TYPE_WHITESPACE = 4
         NODE_TYPE_COMMENT    = 5
         NODE_TYPE_PI         = 6
         NODE_TYPE_TEXT       = 7
-        
-        
+
         def initialize(with_comments, excl_c14n)
           @with_comments = with_comments
           @exclusive = excl_c14n
@@ -44,7 +42,7 @@ module XML
           @prevVisibleNamespacesEnd = 0
           @visibleNamespaces = Array.new()
         end
-        
+
         def add_inclusive_namespaces(prefix_list, element, visible_namespaces)
           namespaces = element.attributes()
           namespaces.each_attribute{|ns|
@@ -58,11 +56,11 @@ module XML
           add_inclusive_namespaces(prefix_list, parent, visible_namespaces) if (parent)
           visible_namespaces
         end
-        
+
         def canonicalize(document)
           write_document_node(document)
         end
-        
+
         def canonicalize_element(element, logging = true)
           @preserve_document = element.document()
           tmp_parent = element.parent()
@@ -76,7 +74,7 @@ module XML
           document.root().add_namespace(element.prefix(), ns)
           write_document_node(document)
         end
-        
+
         def write_document_node(document)
           @res = ""
           @state = BEFORE_DOC_ELEMENT
@@ -89,7 +87,7 @@ module XML
           end
           @res
         end
-        
+
         def write_node(node)
           visible = is_node_visible(node)
           if ((node.node_type() == :text) && white_text?(node.value()))
@@ -113,7 +111,7 @@ module XML
           if (node.node_type() == :comment)
           end
         end
-        
+
         def write_element_node(node, visible)
           savedPrevVisibleNamespacesStart = @prevVisibleNamespacesStart
           savedPrevVisibleNamespacesEnd = @prevVisibleNamespacesEnd
@@ -133,7 +131,7 @@ module XML
           @prevVisibleNamespacesEnd = savedPrevVisibleNamespacesEnd
           @visibleNamespaces.slice!(savedVisibleNamespacesSize, @visibleNamespaces.size() - savedVisibleNamespacesSize) if (@visibleNamespaces.size() > savedVisibleNamespacesSize)
         end
-        
+
         def write_namespace_axis(node, visible)
           doc = node.document()
           has_empty_namespace = false
@@ -157,14 +155,14 @@ module XML
           if (visible && !has_empty_namespace && !is_namespace_rendered(nil, nil))
             @res = @res + ' xmlns=""'
           end
-          
+
           #: ns of inclusive_list
           if self.inclusive_namespaces && !self.inclusive_namespaces.empty?
             self.inclusive_namespaces.each{|prefix|
               list.push(prefix) if (!list.include?(prefix) && (node.attributes.prefixes.include?(prefix)))
             }
           end
-          
+
           if list.delete('xmlns')
             list = ["xmlns"] + list.sort
           else
@@ -182,7 +180,7 @@ module XML
             @prevVisibleNamespacesEnd = @visibleNamespaces.size()
           end
         end
-        
+
         def node_namespaces(node)
           ns = Array.new()
           ns.push(node.prefix())
@@ -196,7 +194,7 @@ module XML
           }
           ns
         end
-        
+
         def write_attribute_axis(node)
           list = Array.new()
           node.attributes.keys.sort.each{|key|
@@ -233,11 +231,11 @@ module XML
             end
           }
         end
-        
+
         def is_namespace_node(namespace_uri)
           return (namespace_uri == "http://www.w3.org/2000/xmlns/")
         end
-        
+
         def is_namespace_rendered(prefix, uri)
           is_empty_ns = prefix == nil && uri == nil
           if (is_empty_ns)
@@ -259,7 +257,7 @@ module XML
           # }
           # return is_empty_ns
         end
-        
+
         def is_node_visible(node)
           return true if (@xnl.size() == 0)
           @xnl.each{|element|
@@ -267,7 +265,7 @@ module XML
           }
           return false
         end
-        
+
         def normalize_string(input, type)
           sb = ""
           return input
@@ -294,29 +292,29 @@ module XML
           # }
           # sb
         end
-        
+
         def write_text_node(node, visible)
           if (visible)
             @res = @res + normalize_string(node.value(), node.node_type())
           end
         end
-        
+
         def white_text?(text)
           return true if ((text.strip() == "") || (text.strip() == nil))
           return false
         end
-        
+
         def is_namespace_decl(attribute)
           # return true if (attribute.name() == "xmlns")
           return true if (attribute.prefix().index("xmlns") == 0)
           return false
         end
-        
+
         def is_text_node(type)
           return true if (type == NODE_TYPE_TEXT || type == NODE_TYPE_CDATA || type == NODE_TYPE_WHITESPACE)
           return false
         end
-        
+
         def remove_whitespace(string)
           new_string = ""
           in_white = false
@@ -339,12 +337,11 @@ module XML
   end #Util
 end #XML
 
-
 if __FILE__ == $0
   document = Document.new(File.new(ARGV[0]))
   body = nil
   c = WSS4R::Security::Util::XmlCanonicalizer.new(false, true)
-  
+
   if (ARGV.size() == 3)
     body = ARGV[2]
     if (body == "true")
@@ -361,7 +358,7 @@ if __FILE__ == $0
   else
     result = c.canonicalize(document)
   end
-    
+
   file = File.new(ARGV[1], "wb")
   file.write(result)
   file.close()
