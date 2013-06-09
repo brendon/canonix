@@ -1,7 +1,8 @@
 PATH
   remote: .
   specs:
-    canonix (0.1.5)
+    canonix (0.1.7)
+      canonix
 
 GEM
   remote: https://rubygems.org/
