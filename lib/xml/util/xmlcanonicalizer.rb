@@ -7,6 +7,7 @@
 
 require "rexml/document"
 require "base64"
+require 'xml'
 
 module XML
   include REXML
@@ -58,7 +59,8 @@ module XML
         end
 
         def canonicalize(document)
-          write_document_node(document)
+          # write_document_node(document)
+          ::LibXML::XML::Parser.string(document.to_s).parse.canonicalize
         end
 
         def canonicalize_element(element, logging = true)
